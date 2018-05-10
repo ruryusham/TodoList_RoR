@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  deadline: MyString
+  done: false
+  list: one
+
+two:
+  title: MyString
+  deadline: MyString
+  done: false
+  list: two

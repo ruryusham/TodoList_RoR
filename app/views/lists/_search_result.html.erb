@@ -1,0 +1,27 @@
+<%if @tasks.count != 0 %>
+  ToDoが<%= @tasks.count %>件見つかりました<br><br>
+  <% @tasks.each do |task| %>
+    <% @AllList.each do |list| %>
+      <%if task.list_id == list.id %>
+        <%= link_to task.title, list_path(list.id) %><br>
+        <%= "期限：" %><%= task.deadline %><br>
+        <%= "リスト："%><%= list.title %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= "作成日："%><%= task.created_at %><br>
+      <% end %>
+    <% end %>
+  <% end %>
+<% else %>
+ <%="対象のToDoはありません"%>
+<% end %>
+
+<br><br><br>
+
+<%if @lists.count != 0 %>
+  ToDoリストが<%= @lists.count %>件見つかりました<br><br>
+  <% @lists.each do |list| %>
+    <%= link_to list.title, list_path(list.id) %><br>
+    <%= list.created_at %><br>
+  <% end %>
+<% else %>
+  <%="対象のToDoリストはありません"%>
+<% end %>
+

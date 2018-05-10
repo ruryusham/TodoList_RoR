@@ -1,0 +1,28 @@
+<h1><%= @list.title %></h1>
+
+<ul>
+  <% @list.tasks.each do |task| %>
+  <li>
+    <%= task.title %>
+    <%= task.deadline %>
+    <%= link_to "[Delete]",list_task_path(task.list_id, task.id), method: :delete, data: {confirm: "削除しますか？"} %>
+    <% if task.done == false%>
+      <%= button_to "未完了",task_toggle_path(task.list_id, task.id) %>
+    <% else %>
+      <%= button_to "完了",task_toggle_path(task.list_id, task.id) %>
+    <% end %>
+  </li>
+  <% end %>
+
+  <p>新しいToDoを作成する</p>
+  <li>
+    <%=form_for [@list, @list.tasks.build] do |f| %>
+      <%= f.text_field :title %>
+      <%= f.date_field :deadline %>
+      <%= f.submit %>
+    <% end %>
+  </li>
+  <% if @list.tasks.count == 0 %>
+  登録されたToDoはございません
+  <% end %>
+</ul>

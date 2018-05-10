@@ -1,0 +1,10 @@
+<h1> Search </h1>
+
+<%= form_tag lists_search_path, action: :result, remote: true do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+<ul id='result'></ul>

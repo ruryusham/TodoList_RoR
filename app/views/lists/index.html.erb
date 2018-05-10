@@ -1,0 +1,28 @@
+<p>新しいToDoリストを作成する</p>
+<%= form_for @newList do |f| %>
+  <p>
+    <%= f.text_field :title %>
+    <%= f.submit %><br><br>
+  </p>
+<% end %>
+
+<ul>
+  <% @lists.each do |list| %>
+        <li>
+          <%= link_to list.title, list_path(list.id) %><br>
+          <%if list.tasks.count != 0 %>
+              <%= list.tasks.count %>個中<%= list.tasks.finished.count %>個がチェック済み<br>
+              <% @tasks.each do |task| %>
+              <%if task.list_id == list.id %>
+                ~<%= task.deadline %><br>
+                <% break %>
+              <% end %>
+              <% end %>
+          <% else %>
+          ToDoがありません<br>
+          <% end %>
+
+          <%= link_to "[Edit]", edit_list_path(list.id) %>
+        </li>
+  <% end %>
+</ul>
